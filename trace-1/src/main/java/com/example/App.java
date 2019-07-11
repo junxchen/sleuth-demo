@@ -39,7 +39,7 @@ public class App
         log.info("===call trace-1===");
         Map map = Maps.newHashMap();
         map.put("name", name);
-        return restTemplate().getForObject("http://trace2/trace-2", String.class, map);
+        return restTemplate().getForObject("http://trace2/trace-2?name={name}", String.class, map);
     }
 
     @Bean
