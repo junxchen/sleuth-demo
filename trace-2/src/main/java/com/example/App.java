@@ -1,7 +1,9 @@
 package com.example;
 
+import brave.Tracer;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -22,6 +24,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App 
 {
+    @Autowired
+
+    Tracer tracer;
+
     public static void main( String[] args )
     {
         SpringApplication.run(App.class, args);
@@ -35,6 +41,7 @@ public class App
             request.getHeader("X-B3-TraceId"), request.getHeader("X-B3-SpanId"),
             request.getHeader("X-Span-Name"),
             request.getHeader("X-B3-ParentSpanId"), request.getHeader("X-B3-Sampled"));
+        log.info("TraceId:{}", tracer.currentSpan().context().traceIdString());
         return "Trace :"+ name;
     }
 }
