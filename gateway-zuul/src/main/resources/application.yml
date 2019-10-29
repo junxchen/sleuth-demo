@@ -1,24 +1,4 @@
 # datasource
-spring:
-  application:
-    name: api-gateway
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-#      routes:
-#        - id: neo_route
-#          uri: http://127.0.0.1:8083/trace-1
-#          predicates:
-#            - Path=/trace1/{segment}
-#          filters:
-#            - AddRequestParameter=name, bar
-
 
 server:
   port: 8082
