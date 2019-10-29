@@ -42,5 +42,11 @@
             <artifactId>fl-base</artifactId>
             <version>${fl-base.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
     </dependencies>
 </project>

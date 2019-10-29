@@ -2,7 +2,6 @@ package com.example;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -28,12 +27,14 @@ public class App
         SpringApplication.run(App.class, args);
     }
 
-    @Autowired
-    private HttpServletRequest request;
-
     @RequestMapping(value = "/trace-2", method = RequestMethod.GET)
-    public String trace(String name) {
+    public String trace(String name, HttpServletRequest request) {
         log.info("===<call trace-2>===");
+
+        log.info("===<call trace-2, TraceId={}, SpanId={}>===,SpanName:{}, ParentSpanId:{}, Sampled:{}",
+            request.getHeader("X-B3-TraceId"), request.getHeader("X-B3-SpanId"),
+            request.getHeader("X-Span-Name"),
+            request.getHeader("X-B3-ParentSpanId"), request.getHeader("X-B3-Sampled"));
         return "Trace :"+ name;
     }
 }
