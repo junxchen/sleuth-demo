@@ -35,6 +35,12 @@ public class App
 
     @RequestMapping(value = "/trace-2", method = RequestMethod.GET)
     public String trace(String name, HttpServletRequest request) {
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         log.info("===<call trace-2>===");
 
         log.info("===<call trace-2, TraceId={}, SpanId={}>===,SpanName:{}, ParentSpanId:{}, Sampled:{}",
